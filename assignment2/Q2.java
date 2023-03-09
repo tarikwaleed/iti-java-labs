@@ -3,16 +3,33 @@ public class Q2 {
     public static void main(String[] args) {
 
         String sentence = "ITI develops people and ITI house of developers and ITI for people";
-        String word = "ITI";
+        String delimiter = "ITI";
         String[] words = sentence.split(" ");
 
+        //Way1
         int count = 0;
         for (String w : words) {
-            if (w.equalsIgnoreCase(word)) {
+            if (w.equalsIgnoreCase(delimiter)) {
                 count++;
             }
         }
-        System.out.println("The word '" + word + "' occurs " + count + " times.");
+        System.out.println("The word '" + delimiter + "' occurs " + count + " times.");
+
+        //Way 2
+        int startIndex = 0;
+        int endIndex = sentence.indexOf(delimiter);
+
+        while (endIndex >= 0) {
+            String token = sentence.substring(startIndex, endIndex);
+            System.out.println(token);
+
+            startIndex = endIndex + delimiter.length();
+            endIndex = sentence.indexOf(delimiter, startIndex);
+        }
+
+        String lastToken = sentence.substring(startIndex);
+        System.out.println(lastToken);
+
 
         StringTokenizer tokenizer=new StringTokenizer(sentence,"ITI");
         while (tokenizer.hasMoreTokens()) {
